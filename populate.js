@@ -1,11 +1,12 @@
-function getNaptanCodes() {
-  return fetch('naptan.json')
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.error(error);
-      return [];
-    });
+async function getNaptanCodes() {
+  try {
+    const response = await fetch('naptan.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 function populateDropdown(results) {
