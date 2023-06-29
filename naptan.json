@@ -84,11 +84,11 @@
    "naptanID": "940GZZLUBLM"
  },
  {
-   "commonName": "Bank",
+   "commonName": "Bank - DLR",
    "naptanID": "940GZZDLBNK"
  },
  {
-   "commonName": "Bank",
+   "commonName": "Bank - Tube",
    "naptanID": "940GZZLUBNK"
  },
  {
@@ -96,11 +96,11 @@
    "naptanID": "940GZZLUBBN"
  },
  {
-   "commonName": "Barking",
+   "commonName": "Barking - Overground",
    "naptanID": "910GBARKING"
  },
  {
-   "commonName": "Barking",
+   "commonName": "Barking - Tube",
    "naptanID": "940GZZLUBKG"
  },
  {
@@ -152,11 +152,11 @@
    "naptanID": "940GZZLUBMY"
  },
  {
-   "commonName": "Bethnal Green",
+   "commonName": "Bethnal Green - Overground",
    "naptanID": "910GBTHNLGR"
  },
  {
-   "commonName": "Bethnal Green",
+   "commonName": "Bethnal Green - Tube",
    "naptanID": "940GZZLUBLG"
  },
  {
@@ -172,11 +172,11 @@
    "naptanID": "940GZZCRBLA"
  },
  {
-   "commonName": "Blackhorse Road",
+   "commonName": "Blackhorse Road - Overground",
    "naptanID": "910GBLCHSRD"
  },
  {
-   "commonName": "Blackhorse Road",
+   "commonName": "Blackhorse Road - Tube",
    "naptanID": "940GZZLUBLR"
  },
  {
@@ -280,27 +280,27 @@
    "naptanID": "940GZZLUCTN"
  },
  {
-   "commonName": "Canada Water",
+   "commonName": "Canada Water - Overground",
    "naptanID": "910GCNDAW"
  },
  {
-   "commonName": "Canada Water",
+   "commonName": "Canada Water - Tube",
    "naptanID": "940GZZLUCWR"
  },
  {
-   "commonName": "Canary Wharf",
+   "commonName": "Canary Wharf - DLR",
    "naptanID": "940GZZDLCAN"
  },
  {
-   "commonName": "Canary Wharf",
+   "commonName": "Canary Wharf - Tube",
    "naptanID": "940GZZLUCYF"
  },
  {
-   "commonName": "Canning Town",
+   "commonName": "Canning Town - DLR",
    "naptanID": "940GZZDLCGT"
  },
  {
-   "commonName": "Canning Town",
+   "commonName": "Canning Town - Tube",
    "naptanID": "940GZZLUCGT"
  },
  {
@@ -484,11 +484,11 @@
    "naptanID": "940GZZCRDDR"
  },
  {
-   "commonName": "Ealing Broadway",
+   "commonName": "Ealing Broadway - Elizabeth Line",
    "naptanID": "910GEALINGB"
  },
  {
-   "commonName": "Ealing Broadway",
+   "commonName": "Ealing Broadway - Tube",
    "naptanID": "940GZZLUEBY"
  },
  {

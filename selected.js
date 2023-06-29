@@ -7,9 +7,19 @@ stationSelect.addEventListener('change', (e) => {
     const url = `https://api.tfl.gov.uk/StopPoint/${stationID}/Arrivals`
     fetch(url)
         .then((response) => response.json())
-        .then((data) => { populateTable(data); })
+        .then((data) => { 
+            // Sort the data by expected arrival time
+            data.forEach((result) => {
+                result.expectedArrival = new Date(result.expectedArrival);
+                });
+                data.sort((a, b) => a.expectedArrival - b.expectedArrival);
+
+            // Populate the table with the results
+            populateTable(data); 
+        })
         .catch((error) => { console.error(error); });
 });
+
 function populateTable(results) {
     const table = document.getElementById('departures-body');
     table.innerHTML = '';
@@ -27,13 +37,9 @@ function populateTable(results) {
         platform.textContent = result.platformName;
 
         const time = document.createElement('td');
-
-        const now = new Date();
         const arrival = new Date(result.expectedArrival);
-        const difference = arrival - now;
-        const minutes = Math.floor(difference / 1000 / 60);
 
-        time.textContent = minutes;
+        time.textContent = arrival.toLocaleTimeString().slice(0, -3);
 
         row.appendChild(line);
         row.appendChild(destination);
