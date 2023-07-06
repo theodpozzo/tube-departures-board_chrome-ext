@@ -1,6 +1,6 @@
 const stationSelect = document.getElementById('station-select');
 
-stationSelect.addEventListener('change', (e) => {
+stationSelect.addEventListener('change', async (e) => {
     const stationName = e.target.options[e.target.selectedIndex].text;
     const stationID = e.target.value;
     console.log(`You selected ${stationName}, id: ${stationID}`)
@@ -15,34 +15,12 @@ stationSelect.addEventListener('change', (e) => {
      */
     if (stationID.includes(',')) {
         console.log(`Array`);
-        const ids = stationID.split(',');
-        const promises = [];
-
-        ids.forEach((id) => {
-            promises.push(callAPI(id));
-        });
-
-        populateTable(Promise.all(promises));
-        
-    } else {
-        console.log('Not array');
-        const resultPromise = callAPI(stationID); // Make this understand that it's a promise
-        resultPromise.then((result) => {
-            populateTable([result]); // Wrap the single result in an array for consistency
-        }).catch((error) => {
-            console.error(error);
-        });
-        return resultPromise;
-    }
-    
-});
-
-function callAPI(stationID) {
-    const url = `https://api.tfl.gov.uk/StopPoint/${stationID}/Arrivals`
-    fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-            const results = [];
+        const numIDs = stationID.split(',').length - 1;
+        var results = [];
+        for (let i = 0; i <= numIDs; i++) {
+            const url = `https://api.tfl.gov.uk/StopPoint/${stationID.split(',')[i]}/Arrivals`
+            const response = await fetch(url);
+            const data = await response.json();
             data.forEach((result) => {
                 results.push({
                     lineName: result.lineName,
@@ -51,10 +29,32 @@ function callAPI(stationID) {
                     expectedArrival: result.expectedArrival
                 });
             });
-            return results; // This is a promise
-        })
-        .catch((error) => { console.error(error); });
-}
+        }
+        results = results.sort((a, b) => {
+            return new Date(a.expectedArrival) - new Date(b.expectedArrival);
+        });
+        populateTable(results);
+    } else {
+        console.log(`Not array`);
+        const url = `https://api.tfl.gov.uk/StopPoint/${stationID}/Arrivals`
+        const response = await fetch(url);
+        const data = await response.json();
+        var results = [];
+        data.forEach((result) => {
+            results.push({
+                lineName: result.lineName,
+                destinationName: result.destinationName,
+                platformName: result.platformName,
+                expectedArrival: result.expectedArrival
+            });
+        });
+        results = results.sort((a, b) => {
+            return new Date(a.expectedArrival) - new Date(b.expectedArrival);
+        });
+        populateTable(results);
+    }
+    
+});
 
 function populateTable(results) {
     const table = document.getElementById('departures-body');

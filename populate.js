@@ -3,10 +3,7 @@ async function getIDs() {
     const response = await fetch('ids.json');
     const data = await response.json();
     return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  } catch (error) {console.error(error)}
 }
 
 function populateDropdown(results) {
