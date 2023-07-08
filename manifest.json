@@ -1,0 +1,11 @@
+{
+    "name": "TfL Departures Board",
+    "version": "1.0.0",
+    "description": "This extension shows a departures board for any tube station in London",
+    "manifest_version": 3,
+    "author": "Theo Dal Pozzo",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "TfL Departures Board"
+    }
+}

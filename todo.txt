@@ -1,0 +1,2 @@
+1. Go through ids.json and aggregate all same ids into one object
+2. COLOURS
