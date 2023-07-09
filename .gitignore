@@ -1,0 +1,34 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore package-lock.json file
+package-lock.json
+
+# Ignore any compiled or bundled files
+dist/
+
+# Ignore any generated build artifacts
+build/
+
+# Ignore any IDE or editor-specific files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore any sensitive or environment-specific files
+.env
+
+# Ignore any generated coverage reports
+coverage/
+
+# Ignore any personal or user-specific files
+*.bak
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Ignore any backup files
+*~
