@@ -67,7 +67,9 @@ function populateTable(results) {
         const destination = document.createElement('td');
         destination.style.textAlign = 'center';
         if (result.destinationName === '') {
-            result.destinationName = 'N/A';
+            result.destinationName = 'Check Front of Train';
+        } else if (result.destinationName === undefined) {
+            destination.textContent = 'Check Front of Train';
         } else {
             destination.textContent = result.destinationName;
         }
