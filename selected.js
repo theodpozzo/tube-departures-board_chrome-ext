@@ -3,9 +3,7 @@ const stationSelect = document.getElementById('station-select');
 stationSelect.addEventListener('change', async (e) => {
     const stationName = e.target.options[e.target.selectedIndex].text;
     const stationID = e.target.value;
-    console.log(`You selected ${stationName}, id: ${stationID}`)
     if (stationID.length === 0 || stationID[0] === 'Select a station') {
-        console.log(`No station selected`);
         return;
     }
 
@@ -14,7 +12,6 @@ stationSelect.addEventListener('change', async (e) => {
      * We need to make a request for each id and combine the results.
      */
     if (stationID.includes(',')) {
-        console.log(`Array`);
         const numIDs = stationID.split(',').length - 1;
         var results = [];
         for (let i = 0; i <= numIDs; i++) {
@@ -35,7 +32,6 @@ stationSelect.addEventListener('change', async (e) => {
         });
         populateTable(results);
     } else {
-        console.log(`Not array`);
         const url = `https://api.tfl.gov.uk/StopPoint/${stationID}/Arrivals`
         const response = await fetch(url);
         const data = await response.json();
@@ -69,14 +65,44 @@ function populateTable(results) {
         line.textContent = result.lineName;
 
         const destination = document.createElement('td');
-        destination.textContent = result.destinationName;
+        destination.style.textAlign = 'center';
+        if (result.destinationName === '') {
+            result.destinationName = 'N/A';
+        } else {
+            destination.textContent = result.destinationName;
+        }
 
         const platform = document.createElement('td');
+        platform.style.textAlign = 'center';
+        
+        if (result.platformName === '') {
+            result.platformName = 'N/A';
+        } else {
+            const numberMatch = result.platformName.match(/\d+/);
+            const directionMatch = result.platformName.match(/North|South|East|West/);
+        
+            if (numberMatch !== null) {
+                result.platformName = numberMatch[0];
+            } else if (directionMatch !== null) {
+                if (directionMatch[0] === 'West') {
+                    result.platformName = 'Westbound';
+                } else if (directionMatch[0] === 'East') {
+                    result.platformName = 'Eastbound';
+                } else if (directionMatch[0] === 'North') {
+                    result.platformName = 'Northbound';
+                } else if (directionMatch[0] === 'South') {
+                    result.platformName = 'Southbound';
+                }
+            }
+        }
+
+
         platform.textContent = result.platformName;
 
         const time = document.createElement('td');
         const arrival = new Date(result.expectedArrival);
 
+        time.style.textAlign = 'center';
         time.textContent = arrival.toLocaleTimeString().slice(0, -3);
 
         row.appendChild(line);
@@ -119,6 +145,8 @@ function setColour(row, result) {
         row.style.borderLeft = '5px solid #0019A8';
     } else if (result.lineName === 'Tram') {
         row.style.borderLeft = '5px solid #84B817';
+    } else if (result.lineName === 'Elizabeth line') {
+        row.style.borderLeft = '5px solid #753E98';
     } else {
         row.style.borderLeft = '5px solid #000000';
     }
