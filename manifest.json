@@ -1,10 +1,11 @@
 {
     "name": "TfL Departures Board",
     "version": "1.1",
-    "description": "This extension offers a real-time departures board for any tube station in London. The corresponding TfL colours are used to indicate which line a train is on.",
+    "description": "This extension offers a colour-coded, real-time departures board for any tube station in London.",
     "manifest_version": 3,
     "author": "Theo Dal Pozzo",
-    "icons": {"128": "res/128TfL.png"},
+    "icons": {  "128": "res/128TfLLogo.png",
+                "64": "res/64TfLLogo.png"},
     "action": {
         "default_popup": "index.html",
         "default_title": "TfL Departures Board"
