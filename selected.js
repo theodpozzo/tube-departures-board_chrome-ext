@@ -11,45 +11,30 @@ stationSelect.addEventListener('change', async (e) => {
      * If stationID is an array, it means there are multiple ids for the station.
      * We need to make a request for each id and combine the results.
      */
+    var numIDs = 0;
+    var stations = [stationID];
     if (stationID.includes(',')) {
-        const numIDs = stationID.split(',').length - 1;
-        var results = [];
-        for (let i = 0; i <= numIDs; i++) {
-            const url = `https://api.tfl.gov.uk/StopPoint/${stationID.split(',')[i]}/Arrivals`
-            const response = await fetch(url);
-            const data = await response.json();
-            data.forEach((result) => {
-                results.push({
+        stations = stationID.split(',');
+        numIDs = stations.length - 1;
+    }
+    var results = [];
+    for (let i = 0; i <= numIDs; i++) {
+        const url = `https://api.tfl.gov.uk/StopPoint/${stations[i]}/Arrivals`
+        const response = await fetch(url);
+        const data = await response.json();
+        data.forEach((result) => {
+            results.push({
                     lineName: result.lineName,
                     destinationName: result.destinationName,
                     platformName: result.platformName,
                     expectedArrival: result.expectedArrival
-                });
-            });
-        }
-        results = results.sort((a, b) => {
-            return new Date(a.expectedArrival) - new Date(b.expectedArrival);
-        });
-        populateTable(results);
-    } else {
-        const url = `https://api.tfl.gov.uk/StopPoint/${stationID}/Arrivals`
-        const response = await fetch(url);
-        const data = await response.json();
-        var results = [];
-        data.forEach((result) => {
-            results.push({
-                lineName: result.lineName,
-                destinationName: result.destinationName,
-                platformName: result.platformName,
-                expectedArrival: result.expectedArrival
             });
         });
-        results = results.sort((a, b) => {
-            return new Date(a.expectedArrival) - new Date(b.expectedArrival);
-        });
-        populateTable(results);
     }
-    
+    results = results.sort((a, b) => {
+            return new Date(a.expectedArrival) - new Date(b.expectedArrival);
+    });
+    populateTable(results);
 });
 
 function populateTable(results) {
