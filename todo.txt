@@ -1,3 +1,4 @@
-1. Make code more efficient
-2. Add docstrings and comments
+1. Add docstrings and comments
+2. Add status update if delays on line 
 3. Create function for calling the API and returning a Promise
+4. INSANE BUS UPDATE -- with location
