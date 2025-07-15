@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TfL Departures</title>
+  <link rel="stylesheet" href="popup.css" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; connect-src https://api.tfl.gov.uk;">
+</head>
+<body>
+  <div class="container">
+    <h1>TfL Departures</h1>
+    <div class="dropdown-container">
+      <label for="station-select">Station:</label>
+      <select id="station-select">
+        <option value="">-- Select Station --</option>
+      </select>
+    </div>
+
+    <div class="table-container">
+      <table id="departures-table">
+        <thead>
+          <tr>
+            <th>Line</th>
+            <th>Destination</th>
+            <th>Platform</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="departures-body">
+          <!-- Populated via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

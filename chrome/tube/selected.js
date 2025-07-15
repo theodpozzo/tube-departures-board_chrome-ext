@@ -11,13 +11,9 @@ stationSelect.addEventListener('change', async (e) => {
      * If stationID is an array, it means there are multiple ids for the station.
      * We need to make a request for each id and combine the results.
      */
-    var numIDs = 0;
-    var stations = [stationID];
-    if (stationID.includes(',')) {
-        stations = stationID.split(',');
-        numIDs = stations.length - 1;
-    }
+    const stations = stationID.split(',').map(id => id.trim());
     var results = [];
+    
     for (let i = 0; i <= numIDs; i++) {
         const url = `https://api.tfl.gov.uk/StopPoint/${stations[i]}/Arrivals`
         const response = await fetch(url);
