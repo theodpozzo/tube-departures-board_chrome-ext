@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "TfL Departures",
+  "version": "2.0",
+  "description": "Live departure board for the London Underground.",
+  "action": {
+    "default_icon": "res/icons/tfl-64.png",
+    "default_title": "TfL Departures",
+    "default_popup": "popup/index.html"
+  },
+  "icons": {
+    "48": "res/icons/tfl-64.png"
+  },
+  "permissions": ["activeTab"],
+  "host_permissions": [
+    "https://api.tfl.gov.uk/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_scripts/populate.js", "content_scripts/selected.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["res/x.jpg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
